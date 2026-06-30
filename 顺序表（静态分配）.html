@@ -39,9 +39,23 @@
         <span style="font-weight: bold;">链式存储结构 —— 链表</span>
     </div>
 </div>
+<h1 id="三-线性表的顺序存储结构">三、线性表的顺序存储结构 </h1>
+<div style="margin-left: 2em; margin-top: 12px; font-size: 1.5em;">
+    <div style="display: flex; align-items: center; ">
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #000; margin-right: 12px;"></span>
+        <span style="font-weight: bold;">顺序表（静态分配）</span>
+    </div>
+    <div style="display: flex; align-items: center; ">
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #000; margin-right: 12px;"></span>
+        <span style="font-weight: bold;">顺序表（动态分配）</span>
+    </div>
+</div>
 <h1 id="顺序表静态分配">顺序表（静态分配） </h1>
 <h2 id="一-顺序表结构体类型定义">一、顺序表结构体类型定义 </h2>
 <pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">ListSize</span> <span class="token expression"><span class="token number">100</span>  </span><span class="token comment">// 最大允许长度</span></span>
+<span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-int">int</span> ListData<span class="token punctuation">;</span>         <span class="token comment">// 数据元素类型，可按需替换</span>
+
+<span class="token comment">// 静态分配顺序表结构体</span>
 <span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-struct">struct</span> <span class="token punctuation">{</span>
     ListData data<span class="token punctuation">[</span>ListSize<span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// 存储元素数组空间</span>
     <span class="token keyword keyword-int">int</span> length<span class="token punctuation">;</span>                <span class="token comment">// 当前有效元素个数</span>
@@ -170,7 +184,7 @@ x位序<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3
 <p>插入成功返回1，失败（i非法/表满）返回0</p>
 <h4 id="写法1先移动元素再更新长度">写法1：先移动元素，再更新长度 </h4>
 <pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-int">int</span> <span class="token function">ListInsert</span><span class="token punctuation">(</span>SqList <span class="token operator">&amp;</span>L<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> ListData x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// i合法区间 [1, L.length+1]，或数组已满</span>
+    <span class="token comment">// i ∈ [1, L.length+1]，或数组已满</span>
     <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>i <span class="token operator">&gt;</span> L<span class="token punctuation">.</span>length <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>L<span class="token punctuation">.</span>length <span class="token operator">==</span> ListSize<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
